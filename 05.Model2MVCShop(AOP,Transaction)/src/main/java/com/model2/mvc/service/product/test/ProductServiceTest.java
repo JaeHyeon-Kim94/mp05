@@ -26,7 +26,10 @@ import com.model2.mvc.service.product.ProductService;
  * ㅇ @Test : 테스트 실행 소스 지정
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = { "classpath:config/commonservice.xml" })
+@ContextConfiguration(locations = {	"classpath:config/context-common.xml",
+										"classpath:config/context-aspect.xml",
+										"classpath:config/context-mybatis.xml",
+										"classpath:config/context-transaction.xml" })
 public class ProductServiceTest {
 
 	//==>@RunWith,@ContextConfiguration 이용 Wiring, Test 할 instance DI
@@ -72,11 +75,11 @@ public class ProductServiceTest {
 		
 		//==> API 확인
 		
-		Assert.assertEquals("test", product.getProdName());
-		Assert.assertEquals("test", product.getProdDetail());
-		Assert.assertEquals("test", product.getManuDate());
-		Assert.assertEquals(100, product.getPrice());
-		Assert.assertEquals("test", product.getFileName());
+		Assert.assertEquals("test1", product.getProdName());
+		Assert.assertEquals("test1", product.getProdDetail());
+		Assert.assertEquals("test1", product.getManuDate());
+		Assert.assertEquals(200, product.getPrice());
+		Assert.assertEquals("test1", product.getFileName());
 
 		Assert.assertNotNull(productService.getProduct(10023));
 		Assert.assertNotNull(productService.getProduct(10021));
